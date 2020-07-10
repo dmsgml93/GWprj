@@ -4,10 +4,14 @@
 
 <typeAliases>
 	<typeAlias type="com.min.gr.emp.dto.EmpDTO" alias="EDto"/>
-	
+	<typeAlias type="com.min.gr.ws.dto.WorkSpaceDTO" alias="WDto"/>
+	<typeAlias type="com.min.gr.user.dto.UserLoginDTO" alias="ULDto"/>
+	<typeAlias type="com.min.gr.user.dto.UserInfoDTO" alias="UIDto"/>
 </typeAliases>
 
 <mappers>
-	
+	<mapper resource="/mapper/statement_emp.xml"/>
+	<mapper resource="/mapper/statement_ws.xml"/>
+	<mapper resource="/mapper/statement_user.xml" />	
 </mappers>
 </configuration>
