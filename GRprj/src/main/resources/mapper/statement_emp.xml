@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.gr.emp">
+  
+<!-- 사업장 조회 -->
+<select id="wsSearch" resultType="">
+
+</select>
+
+<!-- 일반회원이 입사신청시 자동으로 입력되는 사항 -->
+
+<!-- 입사신청한 일반회원 조회(emp_confirm 'D') -->
+
+<!-- 입사승인전 입력하는 정보 update -->
+
+<!-- 직원조회-->
+
+<!-- 직원상세정보 -->
+
+<!-- 입사거절 -->
+
+<!-- 직원정보 수정-->
+
+<!-- 퇴사처리 -->
+
+<!-- 스케줄에서 사용할 사업장 내 직급별 조회 -->
+</mapper>
