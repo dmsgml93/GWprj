@@ -3,6 +3,7 @@
 <configuration>
 
 <typeAliases>
+	<typeAlias type="com.min.gr.emp.dto.EmpDTO" alias="EDto"/>
 	
 </typeAliases>
 
