@@ -9,7 +9,7 @@
 </select>
 
 <!-- 일반회원이 입사신청시 자동으로 입력되는 사항 -->
-<insert id="empApplyInsert" parameterType="EDto">
+<insert id="empApplyInsert" parameterType="java.util.Map">
 INSERT INTO EMPLOYEE(EMP_CODE, USER_ID, WS_CODE, EMP_CONFIRM, EMP_RESIGN)
     VALUES(TO_CHAR(SYSDATE,'YYYYMMDD') || EMP_SEQ.NEXTVAL, #{user_id},#{ws_code},'D','2222-02-22')
 </insert>
@@ -71,8 +71,8 @@ SELECT e.EMP_CODE EMP_CODE,u.USER_ID USER_ID, USER_TYPE, USER_EMAIL,
    <result column="ws_code" property="ws_code"/>
 </resultMap>
 
-<!-- 직원상세정보 -->
-<select id="empDetailSelect" resultMap="empCodeSelectResult" parameterType="EUDto">
+<!-- 직원정보 상세보기 -->
+<select id="empDetailSelect" resultMap="empCodeSelectResult" parameterType="java.util.Map">
 SELECT e.EMP_CODE EMP_CODE, e.USER_ID USER_ID, e.WS_CODE, e.EMP_RANK EMP_RANK, TO_CHAR(e.EMP_HIREDATE,'YYYY-MM-DD') EMP_HIREDATE, TO_CHAR(e.EMP_HIREDATE_END,'YYYY-MM-DD') EMP_HIREDATE_END, e.EMP_POSITION EMP_POSITION, e.EMP_WORKTIME EMP_WORKTIME, 
          e.EMP_HOLIDAY EMP_HOLIDAY, EMP_SALARY, EMP_SALARY_DAY, EMP_CONFIRM, TO_CHAR(EMP_APPLY,'YYYY-MM-DD') EMP_APPLY, USER_EMAIL, USER_PHONE, 
             USER_NAME, USER_ADDRESS, USER_GENDER, USER_BIRTH
@@ -100,14 +100,14 @@ UPDATE  EMPLOYEE
 </update>
 
 <!-- 퇴사처리 -->
-<update id="empdelete" parameterType="EUDto">
+<update id="empdelete" parameterType="java.util.Map">
 UPDATE EMPLOYEE 
 SET EMP_CONFIRM='G', EMP_RESIGN =SYSDATE
 WHERE EMP_CODE=#{emp_code} AND WS_CODE=#{ws_code}
 </update>
 
 <!-- 스케줄에서 사용할 사업장 내 직급별 조회 -->
-<select id="selectWsMember" parameterType="EDto" resultType="java.lang.String">
+<select id="selectWsMember" parameterType="java.util.Map" resultType="java.lang.String">
 SELECT u.USER_ID||' '||WS_CODE||' '||u.USER_NAME MEMBERINFO 
 FROM EMPLOYEE e,USERINFO u 
 WHERE u.USER_ID =e.USER_ID AND WS_CODE =#{ws_code} AND EMP_RANK =#{emp_rank}
