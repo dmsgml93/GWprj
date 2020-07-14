@@ -1,4 +1,4 @@
-package com.min.gr.search.model;
+package com.min.gr.emp.model;
 
 import java.util.List;
 import java.util.Map;
