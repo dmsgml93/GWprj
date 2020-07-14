@@ -13,13 +13,13 @@ public class ServiceImpl_User implements IService_User {
 	private IDao_User dao;
 	
 	@Override
-	public boolean joinInfoEmployer(UserLoginDTO dto) {
+	public boolean joinInfoEmployer(UserInfoDTO dto) {
 		System.out.println("ServiceImpl>>"+dto+"joinInfoEmployer");
 		return dao.joinInfoEmployer(dto);
 	}
 
 	@Override
-	public boolean joinInfoEmployee(UserLoginDTO dto) {
+	public boolean joinInfoEmployee(UserInfoDTO dto) {
 		System.out.println("ServiceImpl>>"+dto+"joinInfoEmployee");
 		return dao.joinInfoEmployee(dto);
 	}

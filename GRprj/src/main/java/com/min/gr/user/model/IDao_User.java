@@ -10,10 +10,10 @@ public interface IDao_User {
 	
 	public UserLoginDTO login(String user_id);
 //	����� ȸ������ (���������Է�)
-	public boolean joinInfoEmployer(UserLoginDTO dto);
+	public boolean joinInfoEmployer(UserInfoDTO dto);
 	
 //	�Ϲ����� ȸ������ (���������Է�) 
-	public boolean joinInfoEmployee(UserLoginDTO dto);
+	public boolean joinInfoEmployee(UserInfoDTO dto);
 	
 //	���̵� �ߺ��˻�
 //	��й�ȣ ã�� �� ���̵� Ȯ�����ε� ���

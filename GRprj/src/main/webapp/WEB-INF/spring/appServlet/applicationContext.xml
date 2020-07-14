@@ -50,7 +50,7 @@
 </tx:advice>
 <!-- 7. Transaction을 AOP을 통해서 작성 -->
 <aop:config>
-	<aop:advisor advice-ref="txAdvice" pointcut="execution(public * com.min.mj.model.*Service*.*(..))"/>
+	<aop:advisor advice-ref="txAdvice" pointcut="execution(public * com.min.gr.model.*Service*.*(..))"/>
 </aop:config>
 
 

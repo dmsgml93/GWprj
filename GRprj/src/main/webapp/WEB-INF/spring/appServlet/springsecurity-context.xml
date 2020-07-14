@@ -52,9 +52,7 @@
       <!-- data-source-ref : 자동로그인 테이블의 위치 -->
       <security:remember-me key="gr" 
       token-validity-seconds="2419200"
-      remember-me-parameter="remember-me" 
-      authentication-success-handler-ref="loginSuccessHandler"
-      data-source-ref="dataSource" user-service-ref="securityController"/>
+      remember-me-parameter="remember-me" />
 
       <security:csrf disabled="true"/>
    

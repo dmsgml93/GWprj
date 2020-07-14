@@ -20,13 +20,13 @@ public class DaoImpl_User implements IDao_User {
 
 	
 	@Override
-	public boolean joinInfoEmployer(UserLoginDTO dto) {
+	public boolean joinInfoEmployer(UserInfoDTO dto) {
 		log.info("DaoImpl_User joinInfoEmployer : {}",dto);
 		return (session.insert(NS+"joinInfoEmployer", dto)>0)?true:false;
 	}
 
 	@Override
-	public boolean joinInfoEmployee(UserLoginDTO dto) {
+	public boolean joinInfoEmployee(UserInfoDTO dto) {
 		log.info("DaoImpl_User joinInfoEmployee : {}",dto);
 		return (session.insert(NS+"joinInfoEmployee", dto)>0)?true:false;
 	}
