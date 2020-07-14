@@ -10,20 +10,20 @@ import com.min.gr.ws.dto.WorkSpaceDTO;
 public interface IService_Emp {
 
 	/**
-	 * »ç¾÷Àå Á¶È¸
+	 * ì‚¬ì—…ì¥ ì¡°íšŒ
 	 * @return WS_NAME, WS_LOC, WS_NUM, WS_CODE
 	 */
 	public List<WorkSpaceDTO> wsSearch();
 	
 	/**
-	 * ÀÔ»ç½ÅÃ»(ÀÔ»ç½ÅÃ»½Ã EMP_CODE, USER_ID, WS_CODE, EMP_CONFIRM, EMP_RESIGNÀÌ ÀÚµ¿À¸·Î ÀÔ·ÂµÈ´Ù.)
+	 * ì…ì‚¬ì‹ ì²­(ìë™ì…ë ¥ EMP_CODE, USER_ID, WS_CODE, EMP_CONFIRM, EMP_RESIGN emp_confirm 'D')
 	 * @param dto
 	 * @return EMP_CODE, USER_ID, WS_CODE, EMP_CONFIRM, EMP_RESIGN
 	 */
 	public  boolean empApplyInsert(Map<String, Object> map);
 	
 	/**
-	 * ÀÔ»ç½ÅÃ»ÇÑ ÀÏ¹İÈ¸¿ø Á¶È¸
+	 * ì…ì‚¬ìŠ¹ì¸ì‹œ ì¼ë°˜íšŒì› ì •ë³´ ì—…ë°ì´íŠ¸ í›„ ìŠ¹ì¸ì™„ë£Œ
 	 * @param ws_code
 	 * @return EMP_CODE, USER_ID, WS_CODE, EMP_CONFIRM, USER_TYPE, USER_NAME, 
 	 *         USER_ADDRESS, USER_PHONE, USER_BIRTH, USER_GENDER, USER_EMAIL
@@ -31,14 +31,14 @@ public interface IService_Emp {
 	public List<EmpUserDTO> empConfirmSelectD(String ws_code);
 	
 	/**
-	 * ÀÔ»ç½ÂÀÎ½Ã  Á¤º¸ ¾÷µ¥ÀÌÆ® ÈÄ ½ÂÀÎ¿Ï·á(±Ù·Î°è¾à½ÃÀÛÀÏ, ±Ù·Î°è¾àÁ¾·áÀÏ, ±Ù·Î½Ã°£, ÁÖÈŞÀÏ, ¿ù±Ş, ±Ù·Î³»¿ë, ¿ù±ŞÀÏ, ÀÔ»ç½ÂÀÎÀÏ, Á÷±Ş)
+	 * ì…ì‚¬ìŠ¹ì¸(ê·¼ë¡œê³„ì•½ì‹œì‘ì¼, ê·¼ë¡œê³„ì•½ì¢…ë£Œì¼, ê·¼ë¬´ì‹œê°„, ì£¼íœ´ì¼, ì›”ê¸‰, ì—…ë¬´ë‚´ìš©, ì›”ê¸‰ì¼, ì…ì‚¬ì¼, ì§ê¸‰)
 	 * @param dto
 	 * @return EMP_HIREDATE, EMP_HIREDATE_END, EMP_WORKTIME, EMP_HOLIDAY, EMP_SALARY, EMP_POSITION, EMP_SALATY_DAY, EMP_APPLY, EMP_RANK
 	 */
 	public boolean empApplyUpdate(EmpDTO dto);
 	
 	/**
-	 * »ç¾÷Àåº° Á÷¿øÁ¶È¸
+	 * ì§ì›ì¡°íšŒ
 	 * @param ws_code
 	 * @return EMP_CODE, USER_ID, USER_TYPE, USER_EMAIL, USER_PHONE, USER_NAME,
 	 *         USER_ADDRESS, USER_GENDER, USER_BIRTH, EMP_HIREDATE, 
@@ -47,7 +47,7 @@ public interface IService_Emp {
 	public List<EmpUserDTO> empAllSelect(String ws_code);
 	
 	/**
-	 * Á÷¿øÁ¤º¸ »ó¼¼º¸±â
+	 * ì§ì›ì •ë³´ ìƒì„¸ë³´ê¸°
 	 * @param map(EMP_CODE, WS_CODE)
 	 * @return EMP_CODE, USER_ID, WS_CODE, EMP_RANK, EMP_HIREDATE, EMP_HIREDATE_END, EMP_POSITION, EMP_WORKTIME,
 	 *         EMP_HOLIDAY, EMP_SALARY, EMP_SALARY_DAY, EMP_CONFIRM, EMP_APPLY, USER_EMAIL, USER_PHONE, USER_NAME,
@@ -56,14 +56,14 @@ public interface IService_Emp {
 	public EmpUserDTO empDetailSelect(Map<String, Object> map);
 	
 	/**
-	 * ÀÔ»ç°ÅÀı
+	 * ì…ì‚¬ê±°ì ˆ
 	 * @param emp_code
 	 * @return EMP_CONFIRM
 	 */
 	public boolean empApplyReject(String emp_code);
 	
 	/**
-	 * Á÷¿øÁ¤º¸ ¼öÁ¤(±Ù·Î°è¾à½ÃÀÛÀÏ, ±Ù·Î°è¾à Á¾·áÀÏ, ¾÷¹«³»¿ë, ¾÷¹«½Ã°£, ÁÖÈŞÀÏ, ¿ù±Ş, Á÷±Ş)
+	 * ì§ì›ì •ë³´ ìˆ˜ì •(ê·¼ë¬´ê³„ì•½ì‹œì‘ì¼, ê·¼ë¬´ê³„ì•½ì¢…ë£Œì¼, ì—…ë¬´ë‚´ìš©, ê·¼ë¬´ì‹œê°„, ì£¼íœ´ì¼, ì›”ê¸‰ì¼, ì§ê¸‰)
 	 * @param dto
 	 * @return EMP_HIREDATE, EMP_HIREDATE_END, EMP_POSITION, EMP_WORKTIME,
 	 *         EMP_HOLIDAY, EMP_SALARY_DAY, EMP_RANK
@@ -71,9 +71,17 @@ public interface IService_Emp {
 	public boolean empUpdate(EmpDTO dto);
 	
 	/**
-	 *Åğ»çÃ³¸® 
+	 * í‡´ì‚¬ì²˜ë¦¬
 	 * @param map(EMP_CODE, WS_CODE)
 	 * @return EMP_CONFIRM, EMP_RESIGN
 	 */
 	public boolean empdelete(Map<String, Object> map);
+	
+	
+	/**
+	 * ìŠ¤ì¼€ì¤„ì—ì„œ ì‚¬ìš©í•˜ëŠ” ì‚¬ì—…ì¥ ë‚´ ì§ê¸‰ë³„ ì¡°íšŒ
+	 * @param dto
+	 * @return
+	 */
+	public List<String> selectWsMember(EmpDTO dto);
 }
