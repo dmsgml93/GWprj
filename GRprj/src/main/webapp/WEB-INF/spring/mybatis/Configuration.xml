@@ -4,7 +4,8 @@
 
 <typeAliases>
 	<typeAlias type="com.min.gr.emp.dto.EmpDTO" alias="EDto"/>
-	<typeAlias type="com.min.gr.ws.dto.WorkSpaceDTO" alias="WDto"/>
+	<typeAlias type="com.min.gr.emp.dto.EmpUserDTO" alias="EUDto"/>
+	<typeAlias type="com.min.gr.ws.dto.WorkSpaceDTO" alias="WSDto"/>
 	<typeAlias type="com.min.gr.user.dto.UserLoginDTO" alias="ULDto"/>
 	<typeAlias type="com.min.gr.user.dto.UserInfoDTO" alias="UIDto"/>
 </typeAliases>

@@ -3,7 +3,7 @@
 <mapper namespace="com.min.gr.emp">
   
 <!-- 사업장 조회 -->
-<select id="wsSearch" resultType="WDto">
+<select id="wsSearch" resultType="WSDto">
 	SELECT WS_NAME, WS_LOC, WS_NUM, WS_CODE
 		FROM WORKSPACE
 </select>
@@ -107,7 +107,7 @@ WHERE EMP_CODE=#{emp_code} AND WS_CODE=#{ws_code}
 </update>
 
 <!-- 스케줄에서 사용할 사업장 내 직급별 조회 -->
-<select id="selectWsMember" parameterType="java.util.Map" resultType="java.lang.String">
+<select id="selectWsMember" parameterType="EDto" resultType="java.lang.String">
 SELECT u.USER_ID||' '||WS_CODE||' '||u.USER_NAME MEMBERINFO 
 FROM EMPLOYEE e,USERINFO u 
 WHERE u.USER_ID =e.USER_ID AND WS_CODE =#{ws_code} AND EMP_RANK =#{emp_rank}
