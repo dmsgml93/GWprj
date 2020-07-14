@@ -44,7 +44,7 @@ public class UserCtrl {
 	// 회원가입 성공 매핑
 //	 <!-- 고용주  -->
 	@RequestMapping(value = "/Employer.do", method = RequestMethod.POST)
-	public String joinInfoEmployer(UserLoginDTO dto, Model model) {
+	public String joinInfoEmployer(UserInfoDTO dto, Model model) {
 		System.out.println("회원가입 정보" + dto.toString());
 		service.joinInfoEmployer(dto);
 		return "login";
@@ -52,16 +52,19 @@ public class UserCtrl {
 
 //	 <!-- 일반직원-->
 	@RequestMapping(value = "/Employee.do", method = RequestMethod.POST)
-	public String joinInfoEmployee(UserLoginDTO dto, Model model) {
+	public String joinInfoEmployee(UserInfoDTO dto, Model model) {
 		System.out.println("회원가입 정보" + dto.toString());
 		service.joinInfoEmployee(dto);
 		return "login";
 	}
 	
 	// 로그인 후 각자 페이지 가는 매핑
-	   @RequestMapping(value = "/result.do", method = RequestMethod.GET)
+	   @RequestMapping(value = "/result.do", method = RequestMethod.POST)
 	   public String Employ(Model model, Authentication user, Principal principal,Principal principal2 ,HttpSession session) {
-	      String id = principal.getName();
+	     
+		   System.out.println("result");
+		   
+		   String id = principal.getName();
 	      
 	      UserLoginDTO ulDto = service.login(id);
 	      UserInfoDTO uiDto = service.info(id);
