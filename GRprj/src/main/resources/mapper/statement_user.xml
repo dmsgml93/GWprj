@@ -16,14 +16,16 @@ INSERT INTO USERINFO
 VALUES(#{user_id},#{user_password}, 'ROLE_User', 'employee', #{user_email}, #{user_phone}, #{user_name}, #{user_address}, #{user_gender},#{user_birth}, #{user_eagree})
 </insert>
 
-<!-- 아이디 중복검사 -->
-<!-- 비밀번호 찾기 때 아이디 확인으로도 사용 -->
-<select id="idChk" resultType="java.lang.String" parameterType="java.lang.String">
-SELECT USER_ID
-	FROM USERLOGIN
-		WHERE USER_ID=#{user_id}
-</select>
 
+
+<!-- 아이디 중복검사 = idDuplicateCheck -->
+<select id="idDuplicateCheck" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		SELECT COUNT(USER_ID)
+		FROM USERINFO
+		WHERE ID=#{user_id}
+	</select>
+	
 <!-- 이메일/휴대폰 중복검사 -->
 <select id="duplChkPhone" resultType="UIDto" parameterType="java.lang.String">
 SELECT USER_ID, USER_EMAIL, USER_PHONE 

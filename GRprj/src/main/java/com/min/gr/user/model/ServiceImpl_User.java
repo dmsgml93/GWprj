@@ -25,9 +25,9 @@ public class ServiceImpl_User implements IService_User {
 	}
 
 	@Override
-	public String idChk(String user_id) {
+	public boolean idDuplicateCheck(String user_id) {
 		System.out.println("ServiceImpl>>"+user_id+"idChk");
-		return dao.idChk(user_id);
+		return dao.idDuplicateCheck(user_id);
 	}
 
 	@Override
