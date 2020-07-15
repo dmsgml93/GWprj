@@ -1,40 +1,72 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>joinInfoEmployee</title>
+<style type="text/css">
+body { background: url(img/bg-login.jpg) !important; }
+.login-box{
+	margin: 10px auto;
+	padding : 10px;
+}
+#form{
+	width: 500px;
+	margin: 10px auto;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+/* #idP, #email, #phone, #address { */
+/* 	color: Silver; */
+/* } */
+#head {
+	text-align: center;
+	font-size: 25px;
+	margin-top: 80px;
+}
+input[type='radio']{
+	margin-top: -3px;
+}
+</style>
 </head>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/resources/js/addressapi.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="./js/signup.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body>
 	
 	<div class="row-fluid">
 	<div id="head">
-		<h1>È¸¿ø°¡ÀÔ</h1>
+		<h1>íšŒì›ê°€ì…</h1>
 	</div>
 	<div class="login-box" style="width:600px;">
 		<form class="form-horizontal" method="post" id="form" name="form" action="./Employee.do">
-			<input type="hidden" id="confmKey" name="confmKey" value="">
- 			<div class="input-prepend">
-			<br>
-			<br>
-    			<label>¾ÆÀÌµğ&nbsp;&nbsp;&nbsp;
-				<input class="input-large" type="text" name="user_id" id="user_id" readonly="readonly" placeholder="¾ÆÀÌµğ ÀÔ·Â">
-    			<input class="btn btn-basic" type="button" value="Áßº¹ È®ÀÎ" onclick="idChk();" style="margin-bottom : 5px;">
+			<input type="hidden" id=chkval  value="">
+	 		<div class="input-prepend">
+				<br>
+				<br>
+	    		<label>ì•„ì´ë””&nbsp;&nbsp;&nbsp;
+				<input class="input-large" type="text" name="user_id" id="user_id"  placeholder="ì•„ì´ë”” ì…ë ¥">
+	    		<input type="button" onclick="check_id()" value="ì•„ì´ë”” í™•ì¸">
+	    		<span id="result"></span> 
 				</label>
- 			</div>
+	 		</div>
  			<div class="input-prepend">
  			<br>
-    			<label>ºñ¹Ğ¹øÈ£&nbsp;&nbsp;&nbsp;
-				<input class="input-large" type="password" id="user_password" name="user_password" placeholder="ºñ¹Ğ¹øÈ£">
+    			<label>ë¹„ë°€ë²ˆí˜¸&nbsp;&nbsp;&nbsp;
+				<input class="input-large" type="password" id="user_password" name="user_password" placeholder="ë¹„ë°€ë²ˆí˜¸">
 				</label>
 				<div  style="height: 15px;">
 				<label id="msg1"> </label>
 				</div>
  			</div>
 			<div class="input-prepend">
-     			<label>ºñ¹Ğ¹øÈ£ È®ÀÎ&nbsp;&nbsp;	
-				<input class="input-large"  type="password" id="passOk" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ">
+     			<label>ë¹„ë°€ë²ˆí˜¸ í™•ì¸&nbsp;&nbsp;	
+				<input class="input-large"  type="password" id="passOk" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
+				<input type="button" onclick="check_pw()" value="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
 				</label>
 				<div  style="height: 15px;">
 				<label id="msg2"> </label>
@@ -42,68 +74,63 @@
   			</div>	
   			<div class="input-prepend">
   			<br>
-     			<label>¼º¸í&nbsp;&nbsp;&nbsp;&nbsp;
-     			<input type="text" class="input-large" id="user_name" name="user_name" placeholder="¼º¸í">
+     			<label>ì„±ëª…&nbsp;&nbsp;&nbsp;&nbsp;
+     			<input type="text" class="input-large" id="user_name" name="user_name" placeholder="ì„±ëª…">
   				</label>
   			</div>
 			<div class="input-prepend" style="display: none;">
-     			<label>Å¸ÀÔ</label>	
+     			<label>íƒ€ì…</label>	
 				<input class="form-control" type="text" id="user_type" name="user_type" value=${user_type}>
 			</div>
 			<div class="input-prepend">
 			<br>
-     			<label>ÀÌ¸ŞÀÏ&nbsp;&nbsp;&nbsp;&nbsp;	
-   				<input type="text" class="input-large" id="user_email" name="user_email" placeholder="ÀÌ¸ŞÀÏ ÀÔ·Â" readonly="readonly">
-   				<input class="btn btn-basic" type="button" value="ÀÎÁõÇÏ±â" onclick="emailChk();" style="margin-bottom : 5px;">
-				</label> 
+     			<label>ì´ë©”ì¼&nbsp;&nbsp;&nbsp;&nbsp;	
+   				<input type="text" class="input-large" id="user_email" name="user_email" placeholder="ì´ë©”ì¼ ì…ë ¥"  >
+   				 <input type="button" value="email ì²´í¬"  onclick="emailCheck()">
+   				 </label> 
 			</div>  
 			<div class="input-prepend">
 			<br>
-     			<label>ÈŞ´ëÀüÈ­&nbsp;&nbsp;&nbsp;
-     			<input type="text" class="input-large" id="user_phone" name="user_phone" placeholder="ÈŞ´ëÀüÈ­ ÀÔ·Â(-Æ÷ÇÔ)" readonly="readonly"> 
-     			<input class="btn btn-basic" type="button" value="ÀÎÁõÇÏ±â" onclick="phoneChk();" style="margin-bottom : 5px;">
-				</label> 	
+     			<label>íœ´ëŒ€ì „í™”&nbsp;&nbsp;&nbsp;
+     			<input type="text" class="input-large" id="user_phone" name="user_phone" placeholder="íœ´ëŒ€ì „í™” ì…ë ¥(-í¬í•¨)"> 
+     			</label> 	
 			</div>
 			<div class="input-prepend">
 			<br>
-     			<label>ÁÖ¼Ò&nbsp;&nbsp;&nbsp;&nbsp;
-				<input class="input-large span8" type="text" id="user_address" name="user_address" readonly="readonly" placeholder="ÁÖ¼Ò ÀÔ·Â"/> 
-				<input class="btn btn-basic" type="button" value="ÁÖ¼Ò °Ë»ö" onclick="goPopup();" style="margin-bottom : 5px;">
+     			<label>ì£¼ì†Œ&nbsp;&nbsp;&nbsp;&nbsp;              
+				<input class="form-control" style="width: 40%; display: inline;" placeholder="ìš°í¸ë²ˆí˜¸" name="addr1" id="addr1" type="text" readonly="readonly" >
+			    <button type="button" class="btn btn-default" onclick="execPostCode();">
+			    <i class="fa fa-search"></i> ìš°í¸ë²ˆí˜¸ ì°¾ê¸°</button>                               
+			    <input class="form-control" style="top: 5px;" placeholder="ë„ë¡œëª… ì£¼ì†Œ" name="user_address" id="user_address" type="text" readonly="readonly" />
+				<input class="form-control" placeholder="ìƒì„¸ì£¼ì†Œ" name="addr3" id="addr3" type="text"  />
 				</label>	
 			</div>
 			<div class="input-prepend">	
 			<br>
-				<label> »ı³â¿ùÀÏ&nbsp;&nbsp;&nbsp;&nbsp;
+				<label> ìƒë…„ì›”ì¼&nbsp;&nbsp;&nbsp;&nbsp;
 					<input class="input-large" type="date" id="user_birth" name="user_birth" style="margin-top: 5px;">
 				</label>
 			</div>
 			<div class="input-prepend">
 			<br>
-				<label>¼ºº° ¼±ÅÃ&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="radio" name="user_gender" value="F" checked="checked" style="margin-top: -3px;"> ¿©
-					<input type="radio" name="user_gender" value="M" style="margin-top: -3px;"> ³²
+				<label>ì„±ë³„ ì„ íƒ&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="radio" name="user_gender" value="F" checked="checked" style="margin-top: -3px;"> ì—¬
+					<input type="radio" name="user_gender" value="M" style="margin-top: -3px;"> ë‚¨
 				</label>
 			</div>
 			<div class="input-prepend"> 
 			<br>
-				<label>ÀÌ¸ŞÀÏ ¼ö½Åµ¿ÀÇ ¼±ÅÃ&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="radio" name="user_eagree" value="Y" checked="checked" style="margin-top: -3px;"> ¿¹
-					<input type="radio" name="user_eagree" value="N" style="margin-top: -3px;"> ¾Æ´Ï¿À
+				<label>ì´ë©”ì¼ ìˆ˜ì‹ ë™ì˜ ì„ íƒ&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="radio" name="user_eagree" value="Y" checked="checked" style="margin-top: -3px;"> ì˜ˆ
+					<input type="radio" name="user_eagree" value="N" style="margin-top: -3px;"> ì•„ë‹ˆì˜¤
 				</label>
 			</div>	
-			<div class="input-prepend">		
-			<br>
-				<label>SMS ¼ö½Åµ¿ÀÇ ¼±ÅÃ&nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="radio" name="user_sagree" value="Y" checked="checked" style="margin-top: -3px;"> ¿¹
-					<input type="radio" name="user_sagree" value="N" style="margin-top: -3px;"> ¾Æ´Ï¿À
-				</label>
-			<br>	
-			</div>	
+
 			<div class="input-prepend" id="botton" style="text-align: center">
 			<br>
 			<label>
-				<input id="signUp" type="button" class="btn btn-primary" value="È¸¿ø°¡ÀÔ">&nbsp;&nbsp;
-				<input type="button" class="btn btn-basic" value="µ¹¾Æ°¡±â" onclick="javascript:history.back(-1)">
+				<button type="submit" class="btn btn-primary" onclick="check()">íšŒì›ê°€ì…</button>&nbsp;&nbsp;
+				<input type="button" class="btn btn-basic" value="ëŒì•„ê°€ê¸°" onclick="javascript:history.back(-1)">
 			</label>
 			</div>
 			<br>

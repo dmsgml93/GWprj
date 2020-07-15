@@ -30,7 +30,7 @@
 
 		<button type="submit">로그인</button>
 	</form>
-	<a href="#joinModal_1" data-uc-click="modal"> 회원가입</a>
+	<a href="./joinInfoEmployee.do" data-uc-click="modal" > 회원가입</a>
 
 	<a href="" class="is-txt-link">ID찾기</a>
 	<a href="" class="is-txt-link">비밀번호 찾기</a>

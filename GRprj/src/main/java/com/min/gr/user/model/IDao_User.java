@@ -15,9 +15,13 @@ public interface IDao_User {
 //	�Ϲ����� ȸ������ (���������Է�) 
 	public boolean joinInfoEmployee(UserInfoDTO dto);
 	
-//	���̵� �ߺ��˻�
-//	��й�ȣ ã�� �� ���̵� Ȯ�����ε� ���
-	public String idChk(String user_id);
+	/**
+	 * 아이디 중복 검사(idDuplicateCheck)
+	 * 
+	 * @param 중복확인값
+	 * @return 사용가능 여부(true 사용가능)
+	 */
+	public boolean idDuplicateCheck(String user_id);
 	
 //	�޴��� �ߺ��˻�
 	public String duplChkPhone(String user_phone);

@@ -32,7 +32,7 @@ public class DaoImpl_User implements IDao_User {
 	}
 
 	@Override
-	public String idChk(String user_id) {
+	public boolean idDuplicateCheck(String user_id) {
 		log.info("DaoImpl_User idChk : {}");
 		return session.selectOne(NS+"idChk", user_id);
 	}

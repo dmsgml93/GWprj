@@ -17,7 +17,7 @@ public interface IService_User {
 	
 //	���̵� �ߺ��˻�
 //	��й�ȣ ã�� �� ���̵� Ȯ�����ε� ���
-	public String idChk(String user_id);
+	public boolean idDuplicateCheck(String user_id);
 	
 //	�޴��� �ߺ��˻�
 	public String duplChkPhone(String user_phone);
