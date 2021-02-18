@@ -179,7 +179,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.10.0</version>
+			<version>2.10.5.1</version>
 		</dependency>
 
 
@@ -235,7 +235,7 @@
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.9.8</version>
+    <version>2.10.5.1</version>
 </dependency>
 				<!-- apache poi MS사의 XML 기반의 파일형식으로 workbook 생성 및 읽기 가능 -->
 		<dependency>
